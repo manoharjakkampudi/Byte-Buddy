@@ -46,7 +46,8 @@ export default function Home() {
     setSources([]);
 
     try {
-      const res = await fetch('http://localhost:8000/query', {
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
+    const res = await fetch(`${backendUrl}/query`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question }),
@@ -70,7 +71,8 @@ export default function Home() {
     resetQuizState();
 
     try {
-      const res = await fetch('http://localhost:8000/quiz', {
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
+      const res = await fetch(`${backendUrl}/quiz`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ answer }),
