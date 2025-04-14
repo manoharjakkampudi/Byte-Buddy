@@ -35,7 +35,7 @@ embeddings = OpenAIEmbeddings()
 vector_db = FAISS.from_documents(chunks, embeddings) if chunks else None
 
 # Step 3: Set up LLM and Conversational Chain
-llm = ChatOpenAI(temperature=0)
+llm = ChatOpenAI(temperature=0,  openai_api_key="sk-proj-ftlIXutVFkgWlpsMxVBZt5GJTuAzRk9q9xqaG6uXbTsRIsiU9m2W9_bHJ3VI3AfuZxtZZc926lT3BlbkFJF5nLPrS4APjTYzEEsMGlkLgbCsHENGNtFS4rZu7H3uh")
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 
 # Use ConversationalRetrievalChain if vector DB exists
