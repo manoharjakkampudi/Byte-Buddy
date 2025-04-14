@@ -31,11 +31,11 @@ splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 chunks = splitter.split_documents(documents)
 
 # Step 2: Create FAISS vector DB if local docs exist
-embeddings = OpenAIEmbeddings()
+embeddings = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_API_KEY"))
 vector_db = FAISS.from_documents(chunks, embeddings) if chunks else None
 
 # Step 3: Set up LLM and Conversational Chain
-llm = ChatOpenAI(temperature=0,  openai_api_key="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")
+llm = ChatOpenAI(temperature=0, openai_api_key=os.getenv("OPENAI_API_KEY"))
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 
 # Use ConversationalRetrievalChain if vector DB exists

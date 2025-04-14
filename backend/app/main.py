@@ -20,9 +20,8 @@ app.add_middleware(
 # ✅ Step 3: Setup LLM for quiz generation (with key passed directly)
 llm = ChatOpenAI(
     temperature=0.7,
-    openai_api_key="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"
+    openai_api_key=os.getenv("OPENAI_API_KEY")
 )
-
 # ✅ Step 4: Health check
 @app.get("/")
 def root():
